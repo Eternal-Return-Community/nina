@@ -10,7 +10,7 @@ datasource db {
 model Token {
   id        Int       @id @default(autoincrement())
   token     String    @default(uuid())
-  limit     Int       @default(50)
+  limit     Int       @default(10)
   isVip     Boolean   @default(false)
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
