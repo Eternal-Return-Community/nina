@@ -2,7 +2,7 @@ import rateLimit from 'express-rate-limit';
 import validateToken from '@nina/controller/validateToken';
 
 const allowList = [Bun.env.ALLOW_IP, Bun.env.ALLOW_TOKEN];
-const allowPath = ['/admin'];
+const allowPath = ['/', '/admin'];
 
 export default (limit: number = 10) => {
     return rateLimit({
@@ -19,7 +19,7 @@ export default (limit: number = 10) => {
         keyGenerator: (req): string => req.headers['x-nina-token'] as string || localhost(req.ip),
         skip: (req): boolean => {
             if (allowPath.includes(req.path)) return true;
-            if (allowList.includes(req.headers['x-nina-token'] as string || localhost(req.ip))) return true;
+            //if (allowList.includes(req.headers['x-nina-token'] as string || localhost(req.ip))) return true;
             return false;
         },
     })
